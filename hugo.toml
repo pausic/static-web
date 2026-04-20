@@ -1,3 +1,7 @@
 baseURL = 'https://pausic.dev/'
 languageCode = 'en-us'
 title = 'Pau'
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
