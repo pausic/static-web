@@ -1,6 +1,7 @@
 baseURL = 'https://pausic.dev/'
 languageCode = 'en-us'
 title = 'Pau'
+enableGitInfo = true
 
 [caches]
   [caches.images]

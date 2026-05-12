@@ -8,7 +8,7 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: #272822;
+      background: #262327;
       color: #f8f8f2;
       font-family: "SF Mono", "Fira Code", "Fira Mono", Menlo, Consolas, monospace;
       font-size: 14px;
@@ -27,25 +27,27 @@
       top: 2rem;
       align-self: flex-start;
       margin-right: 3rem;
-      margin-top: 3.9rem;
+      margin-top: 4.2rem;
       flex-shrink: 0;
     }
-    nav a { display: block; margin-bottom: 0.75rem; color: #e6db74; }
+    nav a { display: block; margin-bottom: 0.75rem; color: #D1AB4E; }
+    nav a.active { color: #FFC639; }
     .content { flex: 1; }
-    h1 { color: #f8f8f2; margin-bottom: 1.5rem; font-size: 1.4rem; font-weight: 700; }
-    h2 { color: #a6e22e; margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.2rem; }
+    h1 { color: #FCFCFA; margin-bottom: 1.5rem; font-size: 1.6rem; font-weight: 700; }
+    h2 { color: #FCFCFA; margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.2rem; }
     p { margin-bottom: 1rem; }
     ul, ol { margin-bottom: 1rem; list-style-position: inside; }
     li { margin-bottom: 0.4rem; }
     a { color: #66d9ef; text-decoration: none; }
     a:hover { text-decoration: underline; }
+    code { background: #363537; color: #FFC639; padding: 0.15em 0.4em; border-radius: 3px; font-size: 0.95em; }
     .comment { color: #75715e; }
     footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #49483e; color: #75715e; font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center; }
     footer .icons { display: flex; gap: 0.75rem; }
     footer .icons a { color: #75715e; }
     footer .icons a:hover { color: #f8f8f2; }
     footer .icons svg { width: 18px; height: 18px; fill: currentColor; }
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       .wrapper { flex-direction: column; padding-top: 2rem; }
       nav { position: static; margin-right: 0; margin-top: 0; margin-bottom: 1.5rem; }
       nav a { display: inline; margin-right: 1.5rem; }
@@ -55,15 +57,22 @@
 <body>
   <div class="wrapper">
     <nav>
-      <a href="/">about</a>
+      <a href="/"{{ if eq .RelPermalink "/" }} class="active"{{ end }}>about</a>
+      <a href="/goodies/"{{ if eq .RelPermalink "/goodies/" }} class="active"{{ end }}>goodies</a>
     </nav>
     <div class="content">
       <main>
         {{ block "main" . }}{{ end }}
       </main>
       <footer>
-        <span class="comment">// {{ .Site.Title }} &copy; {{ now.Year }}</span>
+        <div>
+          {{ block "footer-extra" . }}{{ end }}
+          <span class="comment">// {{ .Site.Title }} &copy; {{ now.Year }}</span>
+        </div>
         <div class="icons">
+          <a href="https://github.com/pausic/static-web" target="_blank" rel="noopener" aria-label="Source code">
+            <svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+          </a>
           <a href="https://github.com/pausic" target="_blank" rel="noopener" aria-label="GitHub">
             {{ readFile "assets/icons/github.svg" | safeHTML }}
           </a>
